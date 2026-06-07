@@ -3,358 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𓋹 كيميت MAS - الصحوة الكبرى 𓋹</title>
+    <title>MAS - حضارتك الرقمية</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: #000;
-            color: #FFD700;
-            overflow-x: hidden;
-            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-        }
-
-        .stars {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><circle cx="50" cy="50" r="1" fill="white"/><circle cx="150" cy="200" r="1" fill="white"/><circle cx="300" cy="100" r="1" fill="white"/></svg>') repeat;
-            animation: moveStars 200s linear infinite;
-            z-index: 0;
-        }
-        
-        @keyframes moveStars { from {background-position: 0 0;} to {background-position: -10000px 5000px;} }
-
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin: 20px 0;
-            text-shadow: 0 0 20px #FFD700, 0 0 40px #FF8C00;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse { 0%, 100% { text-shadow: 0 0 20px #FFD700; } 50% { text-shadow: 0 0 40px #FFD700, 0 0 60px #FF8C00; } }
-
-        .pyramid {
-            width: 200px; height: 200px;
-            margin: 30px auto;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotate 20s infinite linear;
-        }
-        
-        @keyframes rotate { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
-        
-        .pyramid-face {
-            position: absolute;
-            width: 0; height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-bottom: 173px solid rgba(255, 215, 0, 0.3);
-            filter: drop-shadow(0 0 20px #FFD700);
-        }
-        
-        .pyramid.awakened .pyramid-face {
-            border-bottom-color: rgba(255, 215, 0, 1);
-            animation: beam 1s ease-out;
-        }
-        
-        @keyframes beam {
-            0% { filter: drop-shadow(0 0 20px #FFD700); }
-            50% { filter: drop-shadow(0 0 100px #FFD700) drop-shadow(0 -200px 100px #FFD700); }
-            100% { filter: drop-shadow(0 0 20px #FFD700); }
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .stat-box {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #FFD700;
-            border-radius: 15px;
-            padding: 15px 25px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #FFD700;
-        }
-        
-        .stat-label { font-size: 0.9rem; opacity: 0.8; }
-
-        .awaken-btn {
-            background: linear-gradient(45deg, #FF8C00, #FFD700);
-            color: #000;
-            border: none;
-            padding: 20px 50px;
-            font-size: 1.5rem;
-            font-weight: 900;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 30px 0;
-            box-shadow: 0 0 30px #FF8C00, inset 0 0 20px rgba(255,255,255,0.3);
-            transition: all 0.3s;
-            font-family: 'Tajawal', sans-serif;
-        }
-        
-        .awaken-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 50px #FFD700, inset 0 0 30px rgba(255,255,255,0.5);
-        }
-        
-        .awaken-btn:active { transform: scale(0.95); }
-
-        .eye-of-horus {
-            background: rgba(0,0,0,0.5);
-            border: 2px solid #FFD700;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 40px 0;
-        }
-        
-        .camera-view {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            animation: cameraGlow 3s infinite;
-            position: relative;
+        body, html {
+            height: 100%;
             overflow: hidden;
+            background: #000;
+            font-family: 'Cairo', Arial;
         }
-        
-        @keyframes cameraGlow {
-            0%, 100% { box-shadow: inset 0 0 50px rgba(255,215,0,0.3); }
-            50% { box-shadow: inset 0 0 100px rgba(255,215,0,0.6); }
+   .intro {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 999; display: flex;
+            align-items: center; justify-content: center;
+            animation: hideIntro 2.5s forwards;
         }
-        
-        .energy-bar {
-            margin: 15px 0;
-            font-weight: 700;
+   .intro-text {
+            font-size: 4rem; color: #00d9ff; font-weight: 900;
+            text-shadow: 0 0 30px #00d9ff;
         }
-
-        .bird-btn {
-            background: rgba(255,215,0,0.2);
-            border: 1px solid #FFD700;
-            color: #FFD700;
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Tajawal', sans-serif;
-            font-weight: 700;
-            margin: 10px;
+        @keyframes hideIntro {
+            0%, 70% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
         }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: linear-gradient(45deg, #FF8C00, #FFD700);
-            color: #000;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 900;
-            box-shadow: 0 10px 30px rgba(255,215,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: all 0.5s;
+   .video-bg {
+            position: fixed; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto; z-index: 0;
+            transform: translate(-50%, -50%);
+            object-fit: cover; filter: brightness(0.65);
         }
-        
-        .notification.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .coin {
-            width: 80px; height: 80px;
-            background: radial-gradient(circle, #FFD700, #FF8C00);
-            border-radius: 50%;
-            margin: 20px auto;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            color: #000;
-            box-shadow: 0 0 30px #FFD700;
-            animation: spin 3s infinite linear;
-        }
-        
-        @keyframes spin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
-        
-        .coin.show { display: flex; }
-
-        .web {
-            position: fixed;
-            top: 0; left: 0;
+   .overlay {
+            position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            pointer-events: none;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
             z-index: 1;
-            opacity: 0;
-            transition: opacity 1s;
         }
-        
-        .web.active { opacity: 0.3; }
+   .content {
+            position: relative; z-index: 2; height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; color: #fff; padding: 20px;
+            opacity: 0; animation: showContent 1s 2s forwards;
+        }
+        @keyframes showContent { to { opacity: 1; } }
+   .title {
+            font-size: 4rem; font-weight: 900;
+            text-shadow: 0 0 15px #00d9ff;
+            margin-bottom: 15px;
+        }
+   .subtitle {
+            font-size: 1.5rem; opacity: 0.9;
+            text-shadow: 0 0 8px #000; max-width: 700px;
+            margin-bottom: 40px;
+        }
+   .enter-btn {
+            padding: 16px 50px; font-size: 1.2rem; font-weight: bold;
+            background: rgba(0, 217, 255, 0.2); border: 2px solid #00d9ff;
+            color: #00d9ff; border-radius: 8px; cursor: pointer;
+            transition: 0.2s; text-decoration: none;
+        }
+   .enter-btn:hover {
+            background: #00d9ff; color: #000;
+            box-shadow: 0 0 25px #00d9ff;
+        }
+        @media (max-width: 768px) {
+           .intro-text { font-size: 2.5rem; }
+           .title { font-size: 2.5rem; }
+           .subtitle { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <canvas class="web" id="web"></canvas>
-    <div class="notification" id="notif"></div>
-
-    <div class="container">
-        <h1 class="title">𓋹 كيميت MAS 𓋹</h1>
-        <p style="font-size: 1.3rem; margin-bottom: 20px;">نعمر ولا نهدم</p>
-        
-        <div class="pyramid" id="pyramid">
-            <div class="pyramid-face"></div>
-        </div>
-
-        <div class="stats">
-            <div class="stat-box">
-                <div class="stat-number" id="citizens">51</div>
-                <div class="stat-label">مواطن كيميتي</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="houses">51</div>
-                <div class="stat-label">بيت في شبكة العنكبوت</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number">1</div>
-                <div class="stat-label">هرم MAS</div>
-            </div>
-        </div>
-
-        <button class="awaken-btn" onclick="awaken()">𓋹 الصحوة الكبرى 𓋹</button>
-        
-        <div class="coin" id="coin">𓋹</div>
-
-        <div class="eye-of-horus">
-            <h2>👁 عين حورس - البث المباشر</h2>
-            <div class="camera-view">𓋹</div>
-            <div class="energy-bar">
-                الطاقة: شمس <span id="sun">89</span>% | قمر <span id="moon">12</span>%
-            </div>
-            <button class="bird-btn" onclick="listenBirds()">🎵 استمع للطير</button>
-            <div id="birdMsg" style="margin-top: 15px; font-weight: 700;"></div>
-        </div>
-
-        <p style="margin-top: 40px; opacity: 0.7;">
-            𓋹 أول حضارة رقمية تحمي الأرض بطاقة الكون 𓋹
-        </p>
+    <div class="intro">
+        <div class="intro-text">MAS 𓂀</div>
     </div>
 
-    <script>
-        let citizens = 51;
-        let houses = 51;
-        let awakened = false;
-        
-        // عداد وهمي يزيد كل 8 ثواني عشان الناس تتحمس
-        setInterval(() => {
-            if (awakened) {
-                citizens++;
-                houses++;
-                document.getElementById('citizens').textContent = citizens;
-                document.getElementById('houses').textContent = houses;
-            }
-        }, 8000);
+    <video class="video-bg" autoplay muted loop playsinline>
+        <source src="./بوابتك_الفرعونية.webm" type="video/webm">
+    </video>
 
-        // طاقة الشمس والقمر تتغير
-        setInterval(() => {
-            let sun = Math.floor(Math.random() * 30) + 70;
-            document.getElementById('sun').textContent = sun;
-            document.getElementById('moon').textContent = 100 - sun;
-        }, 3000);
+    <div class="overlay"></div>
 
-        function showNotif(msg) {
-            const notif = document.getElementById('notif');
-            notif.textContent = msg;
-            notif.classList.add('show');
-            setTimeout(() => notif.classList.remove('show'), 3000);
-        }
-
-        function awaken() {
-            if (awakened) {
-                showNotif('𓋹 أنت مستيقظ بالفعل يا كيميتي 𓋹');
-                return;
-            }
-            
-            awakened = true;
-            document.getElementById('pyramid').classList.add('awakened');
-            document.getElementById('web').classList.add('active');
-            document.getElementById('coin').classList.add('show');
-            
-            // صوت نبض
-            const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmFgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
-            audio.play().catch(e => {});
-            
-            citizens++;
-            houses++;
-            document.getElementById('citizens').textContent = citizens;
-            document.getElementById('houses').textContent = houses;
-            
-            showNotif('𓋹 مرحباً بك في كيميت - تم إصدار ديبن ذهبي لك 𓋹');
-            
-            // شبكة العنكبوت
-            drawWeb();
-        }
-
-        function listenBirds() {
-            const messages = [
-                '𓋹 عصفور الدوري: كيميت آمنة اليوم 𓋹',
-                '𓋹 الصقر: رياح الشمال تحمل بشارة 𓋹',
-                '𓋹 الهدهد: هناك مواطن جديد قادم 𓋹',
-                '𓋹 الغراب: احذر... لكن كيميت محمية 𓋹',
-                '𓋹 الحمام: سلام على أرض MAS 𓋹'
-            ];
-            const msg = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById('birdMsg').textContent = msg;
-            
-            // صوت طيور
-            const birdAudio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OScTgwOUarm7blmFgU7k9n1unEiBC13yO/eizEIHWq+8+OWT');
-            birdAudio.play().catch(e => {});
-        }
-
-        function drawWeb() {
-            const canvas = document.getElementById('web');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            ctx.strokeStyle = '#FFD700';
-            ctx.lineWidth = 1;
-            
-            for(let i = 0; i < 50; i++) {
-                ctx.beginPath();
-                ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-                ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-                ctx.stroke();
-            }
-        }
-    </script>
+    <div class="content">
+        <h1 class="title">حضارتك الرقمية MAS</h1>
+        <p class="subtitle">حيث يلتقي مجد الفراعنة بتقنية المستقبل</p>
+        <a href="#" class="enter-btn">ادخل البوابة</a>
+    </div>
 </body>
-  </html>
+</html>
